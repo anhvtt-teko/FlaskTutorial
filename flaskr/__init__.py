@@ -27,6 +27,11 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
 
+    #create index page
+    @app.route('/')
+    def index():
+        return "Good afternoon"
+
     # register all page for auth
     from . import auth
     app.register_blueprint(auth.bp)
