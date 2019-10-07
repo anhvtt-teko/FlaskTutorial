@@ -2,11 +2,12 @@ import os
 
 from flask import Flask
 
+
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__, instance_relative_config=True, template_folder='templates')
     app.config.from_mapping(
-        SECRET_KEY='dev',
+        SECRET_KEY=os.environ.get("SECRET_KEY", ""),
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
 
@@ -26,7 +27,7 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
 
-    #register all page for auth
+    # register all page for auth
     from . import auth
     app.register_blueprint(auth.bp)
 
