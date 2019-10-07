@@ -126,3 +126,4 @@ dmypy.json
 .pyre/
 
 .idea/
+flaskr/__pycache__/
